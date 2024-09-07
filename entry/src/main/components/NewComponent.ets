@@ -1,0 +1,25 @@
+@Component
+export struct NewComponent
+{
+  build(){
+    Flex({direction:FlexDirection.Column,justifyContent:FlexAlign.SpaceBetween}){
+      Image($r('app.media.add'))
+        .padding(10)
+        .width(50)
+        .aspectRatio(1)
+        .backgroundColor('#9D9C9D')
+        .border({width:0.8,color:'#9D9C9D'})
+        .borderRadius(50)
+      Text('加入配件')
+    }
+    .width(180)
+    .aspectRatio(1)
+    .border({width:2,color:'#ABABAB'})
+    .alignSelf(ItemAlign.Start)
+    .margin({left:10,top:20})
+    .padding(20)
+    .borderRadius(30)
+    .backgroundColor('#ABABAB')
+    .opacity(0.6)
+  }
+}

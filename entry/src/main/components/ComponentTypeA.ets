@@ -1,4 +1,4 @@
-import http from '@ohos.net.http';2
+// import http from '@ohos.net.http';
 @Component
 export struct ComponentTypeA {
   private on: string = '#EFEDEE'
@@ -6,6 +6,7 @@ export struct ComponentTypeA {
   private name: string
   private data: string
   @Prop isOn: boolean
+  private url:string;
   // private src:string = `"app.media.${this.name}"`
 
   private toggleState() {
@@ -14,7 +15,7 @@ export struct ComponentTypeA {
 
   build() {
     Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceAround }) {
-      Image($r(`"app.media.${this.name}"`))
+      Image($r(this.url))
         .width(30)
         .aspectRatio(1)
       Column() {
