@@ -50,11 +50,13 @@ struct MainPage {
               .margin({top:20,left:20,bottom:20})
             Row()
             {
-              ComponentTypeA({name:'light',data:'30%',isOn:false,url:"app.media.light"})
-              ComponentTypeA({name:'fridge',data:'30%',isOn:false})
-
+              ComponentTypeA({name:'light',data:'30%',isOn:false,url:$r("app.media.light")})
+              ComponentTypeA({name:'fridge',data:'30%',isOn:false,})
+              ComponentTypeA({name:'fridge',data:'30%',isOn:false,})
+              ComponentTypeA({name:'fridge',data:'30%',isOn:false,})
             }
             .alignSelf(ItemAlign.Start)
+
             Flex({direction:FlexDirection.Column,justifyContent:FlexAlign.SpaceBetween}){
               Image($r('app.media.add'))
                 .padding(10)
