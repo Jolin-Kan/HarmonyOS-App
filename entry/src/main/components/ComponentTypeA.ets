@@ -28,7 +28,7 @@ export struct ComponentTypeA {
     .width(100)
     .borderRadius(30)
     .alignSelf(ItemAlign.Start)
-    .margin({ left: 10 })
+    .margin(10)
     .backgroundColor(this.isOn ? this.on : this.off)
     .onClick(() =>{
         this.toggleState()

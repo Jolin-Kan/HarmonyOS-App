@@ -1,12 +1,14 @@
 // import radio from '@ohos.telephony.radio'
 import { ButtonComponent } from '../../components/ButtonComponent'
-import {ComponentTypeA} from '../../components/ComponentTypeA'
-import {NewComponent} from '../../components/NewComponent'
+import {Main} from '../pages/main'
+import {MyPage} from '../pages/MyPage'
+import {DeviceManagementPage} from '../pages/DeviceManegement'
+
 @Entry
 @Component
-struct MainPage {
+struct HomePage {
   title: string = 'home'
-
+  @State currentPage: string = 'Main';
   build() {
     Flex({direction:FlexDirection.Column,justifyContent:FlexAlign.SpaceBetween})
     {
@@ -39,61 +41,29 @@ struct MainPage {
       .opacity(1)
       .align(Alignment.Top)
 
-      // 中间滑动区域
-        Scroll() {
-          Column(){
-
-            Text("home")
-              .fontSize(24)
-              .width("100%")
-              .alignSelf(ItemAlign.Start)
-              .margin({top:20,left:20,bottom:20})
-            Row()
-            {
-              ComponentTypeA({name:'light',data:'30%',isOn:false,url:$r("app.media.light")})
-              ComponentTypeA({name:'fridge',data:'30%',isOn:false,})
-              ComponentTypeA({name:'fridge',data:'30%',isOn:false,})
-              ComponentTypeA({name:'fridge',data:'30%',isOn:false,})
-            }
-            .alignSelf(ItemAlign.Start)
-
-            Flex({direction:FlexDirection.Column,justifyContent:FlexAlign.SpaceBetween}){
-              Image($r('app.media.add'))
-                .padding(10)
-                .width(50)
-                .aspectRatio(1)
-                .backgroundColor('#9D9C9D')
-                .border({width:0.8,color:'#9D9C9D'})
-                .borderRadius(50)
-              Text('加入配件')
-            }
-            .width(180)
-            .aspectRatio(1)
-            .border({width:2,color:'#ABABAB'})
-            .alignSelf(ItemAlign.Start)
-            .margin({left:10,top:20})
-            .padding(20)
-            .borderRadius(30)
-            .backgroundColor('#ABABAB')
-            .opacity(0.6)
-
-          }
-          .height('100%')
-
-        }
-        .height('100%')
-        .width('100%')
-        // .border({
-        //   width:0.7,
-        //   color:Color.White
-        // })
-
+      // 中间部分，根据 currentPage 的值决定显示哪个组件
+      if (this.currentPage === 'MyPage') {
+        MyPage();
+      } else if (this.currentPage === 'DeviceManagementPage') {
+        DeviceManagementPage();
+      }else if (this.currentPage === 'Main') {
+        Main();
+      }
       // 底部 Tab 栏
       Row() {
         Flex({direction:FlexDirection.Row,justifyContent:FlexAlign.SpaceAround}){
-          ButtonComponent({content:"家庭"})
-          ButtonComponent({content:"设备管理"})
-          ButtonComponent({content:"我的"})
+          ButtonComponent({content:"家庭"}).onClick(() => {
+            this.currentPage = 'Main';
+            // this.componentList = [];
+            // GlobalState.getInstance().componentList = []; // 更新全局状态
+          });
+          ButtonComponent({content:"设备管理"}).onClick(() => {
+            this.currentPage = 'DeviceManagementPage';
+          });
+          ButtonComponent({content:"我的"}).onClick(() => {
+            this.currentPage = 'MyPage';
+          });
+
         }
       }
       .height(80)
