@@ -3,7 +3,7 @@ import { ButtonComponent } from '../../components/ButtonComponent'
 import {ComponentTypeA} from '../../components/ComponentTypeA'
 import {CustomDialogExample} from "../../components/CustomDialog"
 import {GlobalState} from '../../utils/state'
-
+import {ComponentItemTypeA} from '../../utils/interface'
 
 const globalState = GlobalState.getInstance();
 @Component
@@ -14,13 +14,19 @@ export struct Main {
     builder: CustomDialogExample({ // 创建实例
       textValue1: $textValue1, // 传递初始值
       textValue2: $textValue2, // 传递初始值
+      componentList: $componentList
     }),
     autoCancel: true,
     alignment: DialogAlignment.Center,
   });
   title: string = 'home'
   // 响应式数组，用于存储 ComponentTypeA 的数据
-  @State componentList: Array<any> = globalState.componentList;
+  @State componentList: Array<ComponentItemTypeA>= globalState.componentList
+
+  // constructor(componentList = globalState.componentList) {
+  //   super();
+  //   this.componentList = componentList;
+  // }
   build() {
     Flex({direction:FlexDirection.Column,justifyContent:FlexAlign.SpaceBetween})
     {
@@ -45,8 +51,6 @@ export struct Main {
             Text('加入配件')
           }
           .onClick(()=>{
-            // globalState.add({ name: 'light3', data: '50%', isOn: false, url: $r('app.media.light') });
-            // this.componentList = [...globalState.componentList];
             if (this.dialogController) {
               this.dialogController.open();
             }
@@ -63,7 +67,7 @@ export struct Main {
 
           // 动态渲染 ComponentTypeA 组件
           Column() {
-            ForEach(this.componentList, (item) => {
+            ForEach(this.componentList, (item:ComponentItemTypeA) => {
               ComponentTypeA({
                 name: item.name,
                 data: item.data,
@@ -80,10 +84,7 @@ export struct Main {
       }
       .height('100%')
       .width('100%')
-      // .border({
-      //   width:0.7,
-      //   color:Color.White
-      // })
   }
-}}
+}
+}
 

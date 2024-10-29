@@ -3,10 +3,10 @@
 export struct ComponentTypeA {
   private on: string = '#EFEDEE'
   private off: string = '#AFAFAE'
-  private name: string
-  private data: string
-  @Prop isOn: boolean
-  private url:Resource;
+  public name: string = ''
+  public data: string = ''
+  @Prop isOn: boolean = false
+  public url:string = '';
   // private src:string = `"app.media.${this.name}"`
 
   private toggleState() {

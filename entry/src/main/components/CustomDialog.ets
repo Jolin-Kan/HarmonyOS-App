@@ -1,15 +1,18 @@
 import {WarningDialog} from './WarningDialog'
+import {ComponentItemTypeA,DeviceType} from '../utils/interface'
 import {GlobalState} from '../utils/state'
 const globalState = GlobalState.getInstance();
+
 
 @CustomDialog
 @Component
 export struct CustomDialogExample {
   @Link textValue1: string;
   @Link textValue2: string;
+  @State warnText:string = ''
+
   dialogController: CustomDialogController;
-  // 响应式数组，用于存储 ComponentTypeA 的数据
-  @State componentList: Array<any> = globalState.componentList;
+  @Link componentList: Array<ComponentItemTypeA>;
 
   constructor(textValue1: string = '', textValue2: string = '') {
     super();
@@ -64,20 +67,36 @@ export struct CustomDialogExample {
             if (this.dialogController) {
               // 检查输入框是否为空
               if (this.textValue1.trim() === '' || this.textValue2.trim() === '') {
-                const reminderDialog = new CustomDialogController({
-                  builder: WarningDialog(this.dialogController),
+                this.warnText = '输入不能为空';
+                const warningDialog = new CustomDialogController({
+                  builder:WarningDialog({
+                    warnText:$warnText
+                  }),
                   autoCancel: true,
                   alignment: DialogAlignment.Center,
                 });
-                reminderDialog.open();
+                warningDialog.open(); // 打开对话框
+                return; // 结束当前函数
+              }
+              if (!DeviceType.includes(this.textValue1)){
+                this.warnText = '没有这种设备类型';
+                const warningDialog = new CustomDialogController({
+                  builder:WarningDialog({
+                    warnText:$warnText
+                  }),
+                  autoCancel: true,
+                  alignment: DialogAlignment.Center,
+                });
+                warningDialog.open(); // 打开对话框
                 return; // 结束当前函数
               }
               // 处理输入值
-              // const links = "app.media." + this.textValue1
-              // globalState.add({ name: this.textValue2, data: '50%', isOn: false, url: $r('app.media.light') });
-              globalState.add({ name: 'light3', data: '50%', isOn: false, url: $r('app.media.light') });
-              this.componentList = globalState.componentList;
-              this.dialogController.close();
+              const links = $r(`app.media.${this.textValue1}`);
+              globalState.add({ name: this.textValue2, data: '50%', isOn: false, url: links });
+              this.componentList = globalState.componentList; // 更新 @Link 变量
+              this.dialogController.close()
+              this.textValue1 = ''
+              this.textValue2 = ''
             }
           })
           .backgroundColor(0xffffff)

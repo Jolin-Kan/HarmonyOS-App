@@ -1,14 +1,13 @@
-import { ButtonComponent } from '../../components/ButtonComponent'
-// @Entry
+import {GlobalState} from '../../utils/state'
+import {ComponentItemTypeA} from '../../utils/interface'
+
+const globalState = GlobalState.getInstance();
 @Component
 export struct DeviceManagementPage {
   title: string = '设备管理'
 
   // 响应式数组，用于存储设备数据
-  deviceList: Array<any> = [
-    { name: '空调', status: '开启', powerUsage: '120W' },
-    { name: '洗衣机', status: '关闭', powerUsage: '0W' },
-  ]
+  @State componentList: Array<ComponentItemTypeA> = globalState.componentList;
 
   build() {
     Flex({direction:FlexDirection.Column,justifyContent:FlexAlign.SpaceBetween})
@@ -24,11 +23,11 @@ export struct DeviceManagementPage {
 
           // 动态渲染设备信息
           Column() {
-            ForEach(this.deviceList, (device) => {
-              Text(`${device.name} - ${device.status}`)
+            ForEach(this.componentList, (device:ComponentItemTypeA) => {
+              Text(`${device.name}`)
                 .fontSize(20)
                 .margin({top:10,left:20})
-              Text(`功耗: ${device.powerUsage}`)
+              Text(`设备种类: ${device.name}`)
                 .fontSize(16)
                 .margin({top:5,left:40})
             })

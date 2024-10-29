@@ -1,6 +1,6 @@
 @Component
 export struct ButtonComponent {
-  private content:string;
+  public content:string = '';
 
   build(){
     Text(this.content)

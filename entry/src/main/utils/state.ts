@@ -1,14 +1,13 @@
 // storage.ts
+import {ComponentItemTypeA} from '../utils/interface'
 export class GlobalState {
   private static instance: GlobalState;
-  public componentList: Array<any> = [
-    { name: 'light1', data: '30%', isOn: false, url: $r('app.media.light') },
-    { name: 'light2', data: '30%', isOn: false, url: $r('app.media.light') },
+  public componentList: Array<ComponentItemTypeA> = [
+
   ];
-  public emitter = new EventEmitter(); // 创建事件发射器
-
-
-  private constructor() {}
+  // { name: 'light1', data: '30%', isOn: false, url: $r('app.media.light') },
+  //   { name: 'light2', data: '30%', isOn: false, url: $r('app.media.light') },
+  // public emitter = new EventEmitter(); // 创建事件发射器
 
   public static getInstance(): GlobalState {
     if (!GlobalState.instance) {

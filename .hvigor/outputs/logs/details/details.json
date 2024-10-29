@@ -1,14 +1,33 @@
 {
-  "totalTime": 1872656208,
-  "moduleNum": 1,
-  "taskTime": {
-    "compileArkTS": 0,
-    "compileJS": 0,
-    "compileResource": 28047333,
-    "packageHap": 0,
-    "signHap": 0
+  "HVIGOR_OHOS_PLUGIN": {
+    "MODULES": [
+      {
+        "MODULE_NAME": "1043bfc77febe75fafec0c4309faccf1",
+        "API_TYPE": "stageMode"
+      }
+    ],
+    "BUILD_MODE": "debug"
   },
-  "isIncremental": true,
-  "hasIncremental": true,
-  "isParallel": true
+  "HVIGOR": {
+    "IS_INCREMENTAL": true,
+    "IS_DAEMON": true,
+    "IS_PARALLEL": true,
+    "IS_HVIGORFILE_TYPE_CHECK": false,
+    "TASK_TIME": {
+      "1043bfc77febe75fafec0c4309faccf1": {
+        "PreCheckSyscap": 177625,
+        "PreviewProcessResource": 369542,
+        "PreviewCompileResource": 70313250,
+        "PreviewHookCompileResource": 104791,
+        "CopyPreviewProfile": 1136542,
+        "ReplacePreviewerPage": 93292,
+        "buildPreviewerResource": 167750,
+        "PreviewUpdateAssets": 648333,
+        "PreviewArkTS": 3501345416,
+        "PreviewBuild": 97875
+      }
+    },
+    "TOTAL_TIME": 3676659542,
+    "BUILD_ID": "202410292323092650"
+  }
 }

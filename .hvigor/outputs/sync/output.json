@@ -2,6 +2,7 @@
   "ohos-module-entry": {
     "SELECT_TARGET": "default",
     "MODULE_BUILD_DIR": "/Users/jolin/DevEcoStudioProjects/MyApplication5/HarmonyOS-App/entry/build",
+    "DEPENDENCY_INFO": {},
     "TARGETS": {
       "default": {
         "SOURCE_ROOT": "/Users/jolin/DevEcoStudioProjects/MyApplication5/HarmonyOS-App/entry/src/main",
@@ -20,6 +21,9 @@
           "WORKER_LOADER": "/Users/jolin/DevEcoStudioProjects/MyApplication5/HarmonyOS-App/entry/build/default/intermediates/loader/default/loader.json",
           "MANIFEST_JSON": "/Users/jolin/DevEcoStudioProjects/MyApplication5/HarmonyOS-App/entry/build/default/intermediates/manifest/default",
           "OUTPUT_METADATA_JSON": "/Users/jolin/DevEcoStudioProjects/MyApplication5/HarmonyOS-App/entry/build/default/intermediates/hap_metadata/default/output_metadata.json"
+        },
+        "BUILD_OPTION": {
+          "debuggable": true
         }
       },
       "ohosTest": {
@@ -34,13 +38,60 @@
           "JS_LITE_ASSETS_PATH": "/Users/jolin/DevEcoStudioProjects/MyApplication5/HarmonyOS-App/entry/build/default/intermediates/loader_out_lite/ohosTest",
           "RES_PATH": "/Users/jolin/DevEcoStudioProjects/MyApplication5/HarmonyOS-App/entry/build/default/intermediates/res/ohosTest",
           "RES_PROFILE_PATH": "/Users/jolin/DevEcoStudioProjects/MyApplication5/HarmonyOS-App/entry/build/default/intermediates/res/ohosTest/resources/base/profile",
-          "ETS_SUPER_VISUAL_PATH": "/Users/jolin/DevEcoStudioProjects/MyApplication5/HarmonyOS-App/entry/build/default/cache/ohosTest/ohosTest@CompileArkTS/esmodule",
-          "JS_SUPER_VISUAL_PATH": "/Users/jolin/DevEcoStudioProjects/MyApplication5/HarmonyOS-App/entry/build/default/cache/ohosTest/ohosTest@CompileJS/jsbundle",
+          "ETS_SUPER_VISUAL_PATH": "/Users/jolin/DevEcoStudioProjects/MyApplication5/HarmonyOS-App/entry/build/default/cache/ohosTest/ohosTest@OhosTestCompileArkTS/esmodule",
+          "JS_SUPER_VISUAL_PATH": "/Users/jolin/DevEcoStudioProjects/MyApplication5/HarmonyOS-App/entry/build/default/cache/ohosTest/ohosTest@OhosTestCompileJS/jsbundle",
           "WORKER_LOADER": "/Users/jolin/DevEcoStudioProjects/MyApplication5/HarmonyOS-App/entry/build/default/intermediates/loader/ohosTest/loader.json",
           "MANIFEST_JSON": "/Users/jolin/DevEcoStudioProjects/MyApplication5/HarmonyOS-App/entry/build/default/intermediates/manifest/ohosTest",
           "OUTPUT_METADATA_JSON": "/Users/jolin/DevEcoStudioProjects/MyApplication5/HarmonyOS-App/entry/build/default/intermediates/hap_metadata/ohosTest/output_metadata.json"
+        },
+        "BUILD_OPTION": {
+          "debuggable": true
         }
       }
+    },
+    "BUILD_OPTION": {
+      "default-default": {
+        "debuggable": true,
+        "copyFrom": "default",
+        "strictMode": {
+          "caseSensitiveCheck": true,
+          "useNormalizedOHMUrl": true
+        },
+        "name": "debug"
+      }
+    },
+    "BUILD_PROFILE_OPT": {
+      "apiType": "stageMode",
+      "buildOption": {},
+      "buildOptionSet": [
+        {
+          "name": "release",
+          "arkOptions": {
+            "obfuscation": {
+              "ruleOptions": {
+                "enable": false,
+                "files": [
+                  "./obfuscation-rules.txt"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "name": "default"
+        },
+        {
+          "name": "debug"
+        }
+      ],
+      "targets": [
+        {
+          "name": "default"
+        },
+        {
+          "name": "ohosTest"
+        }
+      ]
     }
   },
   "ohos-project": {
@@ -49,7 +100,71 @@
     "BUNDLE_NAME": "com.example.myapplication",
     "BUILD_PATH": {
       "OUTPUT_PATH": "/Users/jolin/DevEcoStudioProjects/MyApplication5/HarmonyOS-App/build/outputs/default"
-    }
+    },
+    "MODULES": [
+      {
+        "name": "entry",
+        "srcPath": "/Users/jolin/DevEcoStudioProjects/MyApplication5/HarmonyOS-App/entry",
+        "targets": [
+          {
+            "name": "default",
+            "applyToProducts": [
+              "default"
+            ]
+          }
+        ],
+        "belongProjectPath": "/Users/jolin/DevEcoStudioProjects/MyApplication5/HarmonyOS-App"
+      }
+    ],
+    "PROFILE_OPT": {
+      "app": {
+        "signingConfigs": [],
+        "products": [
+          {
+            "name": "default",
+            "signingConfig": "default",
+            "compatibleSdkVersion": "5.0.0(12)",
+            "runtimeOS": "HarmonyOS",
+            "buildOption": {
+              "strictMode": {
+                "caseSensitiveCheck": true,
+                "useNormalizedOHMUrl": true
+              }
+            }
+          }
+        ],
+        "buildModeSet": [
+          {
+            "name": "debug"
+          },
+          {
+            "name": "release"
+          }
+        ]
+      },
+      "modules": [
+        {
+          "name": "entry",
+          "srcPath": "./entry",
+          "targets": [
+            {
+              "name": "default",
+              "applyToProducts": [
+                "default"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "CONFIG_PROPERTIES": {
+      "enableSignTask": true,
+      "skipNativeIncremental": false,
+      "hvigor.keepDependency": true
+    },
+    "OVERALL_PROJECT_PATHS": [
+      "/Users/jolin/DevEcoStudioProjects/MyApplication5/HarmonyOS-App"
+    ]
   },
   "version": 1
 }
