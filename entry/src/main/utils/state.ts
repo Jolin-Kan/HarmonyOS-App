@@ -5,6 +5,8 @@ export class GlobalState {
     { name: 'light1', data: '30%', isOn: false, url: $r('app.media.light') },
     { name: 'light2', data: '30%', isOn: false, url: $r('app.media.light') },
   ];
+  public emitter = new EventEmitter(); // 创建事件发射器
+
 
   private constructor() {}
 

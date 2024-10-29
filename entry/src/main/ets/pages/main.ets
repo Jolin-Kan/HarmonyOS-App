@@ -1,10 +1,23 @@
 // import radio from '@ohos.telephony.radio'
 import { ButtonComponent } from '../../components/ButtonComponent'
 import {ComponentTypeA} from '../../components/ComponentTypeA'
+import {CustomDialogExample} from "../../components/CustomDialog"
 import {GlobalState} from '../../utils/state'
+
+
 const globalState = GlobalState.getInstance();
 @Component
 export struct Main {
+  @State textValue1: string = ''; // 初始化状态
+  @State textValue2: string = ''; // 初始化状态
+  dialogController: CustomDialogController | null = new CustomDialogController({
+    builder: CustomDialogExample({ // 创建实例
+      textValue1: $textValue1, // 传递初始值
+      textValue2: $textValue2, // 传递初始值
+    }),
+    autoCancel: true,
+    alignment: DialogAlignment.Center,
+  });
   title: string = 'home'
   // 响应式数组，用于存储 ComponentTypeA 的数据
   @State componentList: Array<any> = globalState.componentList;
@@ -29,10 +42,15 @@ export struct Main {
               .backgroundColor('#9D9C9D')
               .border({width:0.8,color:'#9D9C9D'})
               .borderRadius(50)
-            Text('加入配件').onClick(()=>{
-              globalState.add({ name: 'light3', data: '50%', isOn: false, url: $r('app.media.light') });
-            })
+            Text('加入配件')
           }
+          .onClick(()=>{
+            // globalState.add({ name: 'light3', data: '50%', isOn: false, url: $r('app.media.light') });
+            // this.componentList = [...globalState.componentList];
+            if (this.dialogController) {
+              this.dialogController.open();
+            }
+          })
           .width(180)
           .aspectRatio(1)
           .border({width:2,color:'#ABABAB'})
